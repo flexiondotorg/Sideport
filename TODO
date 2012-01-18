@@ -1,0 +1,8 @@
+
+Todo
+====
+
+ * Non destructive use of DEBEMAIL and DEBFULLNAME
+ * Possibly add '-d' to override unmet build dependancies during dpkg-buildpackage
+ * Refactoring
+
