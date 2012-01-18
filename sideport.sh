@@ -2,7 +2,8 @@
 
 # License
 #
-# Sideport script
+# Automated script for side porting Debian packages to Ubuntu and publishing 
+# them in a Launchpad PPA.
 # Copyright (c) 2012 Flexion.Org, http://flexion.org/
 #
 # Permission is hereby granted, free of charge, to any person
@@ -119,7 +120,7 @@ BUILD_URL=""
 BUILD_SUFFIX="ppa1"
 BUILD_TEST=0
 BUILD_SCRIPT=""
-BUILD_MESSAGE="Automated backport. No source changes."
+BUILD_MESSAGE=""
 
 # OK, since this is primarily for my use, create default suitable for me ;-)
 if [ "${USER}" == "martin" ] || [ "${USER}" == "wimpr1m" ]; then
@@ -214,10 +215,19 @@ do
     
     #NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`~${BUILD_CODE}1    
 
-    ncecho " [x] Updating debian/changes "
-    dch --distribution ${BUILD_CODE} --force-distribution --newversion ${NEW_VERSION} --force-bad-version "${BUILD_MESSAGE}" >> "$log" 2>&1 &
-    pid=$!;progress_loop $pid
-
+    # Get the current urgency
+    URGENCY=`head -n1 debian/changelog | cut -d'=' -f2`    
+   
+    ncecho " [x] Creating new version "    
+    dch --distribution ${BUILD_CODE} --force-distribution --newversion ${NEW_VERSION} --force-bad-version --urgency=${URGENCY} "Back ported from ${BUILD_URL}" >> "$log" 2>&1
+    pid=$!;progress_loop $pid    
+    
+    if [ -n "${BUILD_MESSAGE}" ]; then
+        ncecho " [x] Appending build message "        
+        dch --append "${BUILD_MESSAGE}" >> "$log" 2>&1 &
+        pid=$!;progress_loop $pid        
+    fi
+    
     # TODO - Should I add '-d' to override unmet dependancies?
     #  dpkg-buildpackage: warning: Build dependencies/conflicts unsatisfied; aborting.
     #  dpkg-buildpackage: warning: (Use -d flag to override.)
