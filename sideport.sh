@@ -213,7 +213,8 @@ do
         NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`~${BUILD_SUFFIX}~${BUILD_CODE}1
     fi
     
-    #NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`~${BUILD_CODE}1    
+    # Remove any colon prefixing.
+    CLEAN_VERSION=`echo ${NEW_VERSION} | cut -d':' -f2`
 
     # Get the current urgency
     URGENCY=`head -n1 debian/changelog | cut -d'=' -f2`    
@@ -233,17 +234,16 @@ do
     #  dpkg-buildpackage: warning: (Use -d flag to override.)
 
     ncecho " [x] Building and signing package "
-    dpkg-buildpackage -S -sa -k${BUILD_KEY} >> "$log" 2>&1 &
+    dpkg-buildpackage -d -S -sa -k${BUILD_KEY} >> "$log" 2>&1 &
     pid=$!;progress_loop $pid
 
     # Only upload if test mode is disabled.
     if [ ${BUILD_TEST} -eq 0 ]; then
-        ncecho " [x] Uploading package : ${BUILD_PKG}_${NEW_VERSION}_source.changes "
-        dput ${BUILD_PPA} ../${BUILD_PKG}_${NEW_VERSION}_source.changes >> "$log" 2>&1
-        #pid=$!;progress_loop $pid
-        cecho success
+        ncecho " [x] Uploading package : ${BUILD_PKG}_${CLEAN_VERSION}_source.changes "
+        dput ${BUILD_PPA} ../${BUILD_PKG}_${CLEAN_VERSION}_source.changes >> "$log" 2>&1 &
+        pid=$!;progress_loop $pid
     else
-        ncecho " [x] Uploading package : dput ${BUILD_PPA} ${BUILD_PKG}_${NEW_VERSION}_source.changes "
+        ncecho " [x] Uploading package : dput ${BUILD_PPA} ${BUILD_PKG}_${CLEAN_VERSION}_source.changes "
         cecho "test mode"
     fi
 done
