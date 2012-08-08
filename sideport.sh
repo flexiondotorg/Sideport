@@ -30,7 +30,9 @@
 # References
 #  - http://tjworld.net/wiki/Linux/Ubuntu/Packages/PPA
 #  - https://www.ebower.com/docs/ubuntu-ppa/
-
+#
+# Requires
+#  - devscripts, debhelper, dput, quilt
 
 # 'source' my common functions
 if [ -r /tmp/common.sh ]; then
@@ -60,7 +62,7 @@ function build_options() {
     BUILD_DSC=`echo ${BUILD_URL##*\/}`
     BUILD_VER=`echo ${BUILD_DSC%-*}`
     BUILD_PKG=`echo ${BUILD_DSC%_*}`
-    BUILD_SNP=`echo ${BUILD_VER##*+}`
+    BUILD_SNP=`echo ${BUILD_VER##*+} | sed 's/\.dsc//'`
     BUILD_GRP=`echo ${BUILD_VER##*~}`    
 
     echo "     Build Distro     : $BUILD_CODE"
@@ -207,11 +209,11 @@ do
     #if [ "${BUILD_GRP}" != "${BUILD_VER}" ]; then    
     #    NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`${BUILD_SUFFIX}~${BUILD_CODE}1+${BUILD_GRP}    
     #el
-    if [ "${BUILD_SNP}" != "${BUILD_VER}" ]; then
-        NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`~${BUILD_SUFFIX}~${BUILD_CODE}1+${BUILD_SNP}
-    else
+    #if [ "${BUILD_SNP}" != "${BUILD_VER}" ]; then
+    #    NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`~${BUILD_SUFFIX}~${BUILD_CODE}1+${BUILD_SNP}
+    #else
         NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`~${BUILD_SUFFIX}~${BUILD_CODE}1
-    fi
+    #fi
     
     # Remove any colon prefixing.
     CLEAN_VERSION=`echo ${NEW_VERSION} | cut -d':' -f2`
