@@ -2,8 +2,8 @@
 
 # License
 #
-# Automated script for side porting Debian packages to Ubuntu and publishing 
-# them in a Launchpad PPA.
+# Automated script for side porting Debian packages to Ubuntu and
+# publishing them in a Launchpad PPA.
 # Copyright (c) 2014 Flexion.Org, http://flexion.org/
 #
 # Permission is hereby granted, free of charge, to any person
@@ -72,7 +72,6 @@ function build_options() {
     #else
     #    echo "     Package Group    : n/a"
     #fi
-
 
     echo "     Package Message  : ${BUILD_MESSAGE}"
     echo "     Package Script   : ${BUILD_SCRIPT}"
@@ -198,16 +197,15 @@ do
         "${BUILD_SCRIPT}" >> "$log" 2>&1 &
         pid=$!;progress_loop $pid
     else
-        ncecho " [x] Entering ${BUILD_SCRIPT} "
+        ncecho " [x] Executing ${BUILD_SCRIPT} "
         cecho failed
         exit 1
     fi
 
     # If there is a snapshot reference in the original package then preserve it.
     #if [ "${BUILD_GRP}" != "${BUILD_VER}" ]; then
-    #    NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`${BUILD_SUFFIX}~${BUILD_CODE}1+${BUILD_GRP}    
-    #el
-    #if [ "${BUILD_SNP}" != "${BUILD_VER}" ]; then
+    #    NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`${BUILD_SUFFIX}~${BUILD_CODE}1+${BUILD_GRP}
+    #elif [ "${BUILD_SNP}" != "${BUILD_VER}" ]; then
     #    NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`~${BUILD_SUFFIX}~${BUILD_CODE}1+${BUILD_SNP}
     #else
         NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`${BUILD_SUFFIX}~${BUILD_CODE}1
