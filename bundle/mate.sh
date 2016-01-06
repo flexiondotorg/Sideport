@@ -2,7 +2,7 @@
 
 function build_wily() {
     #http://wiki.mate-desktop.org/status:1.12
-    #https://packages.debian.org/source/sid/<package>
+    #https://packages.debian.org/source/sid/<package>gi
     #local PPA="${DIST}-mate"
     local PPA="crazy-mate"
     for DIST in wily
