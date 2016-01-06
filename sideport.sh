@@ -106,6 +106,7 @@ function usage() {
 }
 
 BUILD_CODE=${LSB_CODE}
+BUILD_INC="1.3"
 BUILD_URL=""
 BUILD_SUFFIX=""
 BUILD_TEST=0
@@ -113,7 +114,7 @@ BUILD_SCRIPT=""
 BUILD_MESSAGE=""
 
 # OK, since this is primarily for my use, create default suitable for me ;-)
-if [ "${USER}" == "martin" ] || [ "${USER}" == "wimpr1m" ]; then
+if [ "${USER}" == "martin" ]; then
     BUILD_PPA="ppa:flexiondotorg/experimental"
     BUILD_KEY="0864983E"
     DEBEMAIL="code@flexion.org"
@@ -196,10 +197,10 @@ do
         ncecho " [x] Executing ${BUILD_SCRIPT} "
         "${BUILD_SCRIPT}" >> "$log" 2>&1 &
         pid=$!;progress_loop $pid
-    else
-        ncecho " [x] Executing ${BUILD_SCRIPT} "
-        cecho failed
-        exit 1
+    #else
+    #    ncecho " [x] Executing ${BUILD_SCRIPT} "
+    #    cecho failed
+    #    exit 1
     fi
 
     # If there is a snapshot reference in the original package then preserve it.
@@ -208,7 +209,7 @@ do
     #elif [ "${BUILD_SNP}" != "${BUILD_VER}" ]; then
     #    NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`~${BUILD_SUFFIX}~${BUILD_CODE}1+${BUILD_SNP}
     #else
-        NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`${BUILD_SUFFIX}~${BUILD_CODE}1
+        NEW_VERSION=`head -n1 debian/changelog | cut -d'(' -f2 | cut -d')' -f1 | cut -d'~' -f1`${BUILD_SUFFIX}~${BUILD_CODE}${BUILD_INC}
     #fi
 
     # Remove any colon prefixing.
