@@ -2,6 +2,7 @@
 
 function build_wily() {
     #http://wiki.mate-desktop.org/status:1.12
+    #https://packages.debian.org/source/sid/<package>
     #local PPA="${DIST}-mate"
     local PPA="crazy-mate"
     for DIST in wily
@@ -32,10 +33,10 @@ function build_wily() {
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-system-monitor/mate-system-monitor_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
 
         # Extra
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/a/atril/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/c/caja-dropbox/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/c/caja-extensions/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/e/eom/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/a/atril/atril_1.12.2-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/c/caja-dropbox/caja-dropbox_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/c/caja-extensions/caja-extensions_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/e/eom/eom_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-applets/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-indicator-applet/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-netbook/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
