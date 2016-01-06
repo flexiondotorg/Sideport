@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 function build_wily() {
+    #http://wiki.mate-desktop.org/status:1.12
     #local PPA="${DIST}-mate"
     local PPA="crazy-mate"
-    for DIST in xenial
+    for DIST in wily
     do
         ../sideport.sh -u http://ftp.de.debian.net/debian/pool/main/m/mate-common/mate-common_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-desktop/mate-desktop_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
@@ -11,25 +12,24 @@ function build_wily() {
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/libm/libmatekbd/libmatekbd_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/libm/libmatemixer/libmatemixer_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/libm/libmateweather/libmateweather_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        return
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-icon-theme/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-icon-theme-faenza/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/c/caja/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-polkit/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/marco/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-session-manager/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-settings-daemon/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST} -t
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-menus/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-panel/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-backgrounds/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-themes/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST} -t
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-notification-daemon/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-control-center/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-screensaver/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/e/engrampa/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-media/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST} -t
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-power-manager/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-system-monitor/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-icon-theme/mate-icon-theme_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-icon-theme-faenza/mate-icon-theme-faenza_1.12.0+dfsg1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/c/caja/caja_1.12.2-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-polkit/mate-polkit_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/marco/marco_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-session-manager/mate-session-manager_1.12.1-2.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-settings-daemon/mate-settings-daemon_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-menus/mate-menus_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-panel/mate-panel_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-backgrounds/mate-backgrounds_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-themes/mate-themes_1.12.2+gtk3.18-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST} -t
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-notification-daemon/mate-notification-daemon_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-control-center/mate-control-center_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-screensaver/mate-screensaver_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/e/engrampa/engrampa_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-media/mate-media_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-power-manager/mate-power-manager_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-system-monitor/mate-system-monitor_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
 
         # Extra
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/a/atril/ -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
