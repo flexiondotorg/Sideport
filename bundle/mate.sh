@@ -34,7 +34,7 @@ function build_wily() {
 
         # Extra
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/a/atril/atril_1.12.2-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
-        ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/c/caja-dropbox/caja-dropbox_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
+        ../sideport.sh -u http://http.debian.net/debian/pool/non-free/c/caja-dropbox/caja-dropbox_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/c/caja-extensions/caja-extensions_1.12.0-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/e/eom/eom_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
         ../sideport.sh -u http://ftp.de.debian.org/debian/pool/main/m/mate-applets/mate-applets_1.12.1-1.dsc -p ppa:ubuntu-mate-dev/${PPA} -c ${DIST}
